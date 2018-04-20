@@ -23,7 +23,7 @@ export default {
       transitionName: '',
       fixed: true,
       tabItemArr: [{
-        id: 'firstPage',
+        id: 'home',
         name: '首页',
         infoNum: 1
       }, {
@@ -104,16 +104,16 @@ export default {
   height:100%;
   top:0;
   left:0;
-  transition: all .2s cubic-bezier(.55,0,.1,1);
+  transition: all .4s cubic-bezier(.55,0,.1,1);
 }
 .slide-right-leave-active, .slide-left-enter {
   opacity: 0;
-  -webkit-transform: translate(-50px, 0);
-  transform: translate(-50px, 0);
+  -webkit-transform: translate(-100px, 0);
+  transform: translate(-100px, 0);
 }
 .slide-right-enter, .slide-left-leave-active {
   opacity: 0;
-  -webkit-transform: translate(50px, 0);
-  transform: translate(50px, 0);
+  -webkit-transform: translate(100px, 0);
+  transform: translate(100px, 0);
 }
 </style>

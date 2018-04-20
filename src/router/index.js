@@ -4,13 +4,13 @@ import Router from 'vue-router'
 Vue.use(Router)
 // 按需加载
 const routes = [{
-  path: '/home',
-  name: 'home',
-  component: resolve => require(['@/pages/home'], resolve),
+  path: '/index',
+  name: 'index',
+  component: resolve => require(['@/pages/index'], resolve),
   children: [{
     path: '/',
-    name: 'firstPage',
-    component: resolve => require(['@/pages/firstPage'], resolve)
+    name: 'home',
+    component: resolve => require(['@/pages/homePage'], resolve)
   }, {
     path: 'hall',
     name: 'hall',
@@ -18,15 +18,15 @@ const routes = [{
   }, {
     path: 'server',
     name: 'server',
-    component: resolve => require(['@/pages/firstPage'], resolve)
+    component: resolve => require(['@/pages/homePage'], resolve)
   }, {
     path: 'user',
     name: 'user',
-    component: resolve => require(['@/pages/firstPage'], resolve)
+    component: resolve => require(['@/pages/homePage'], resolve)
   }]
 }, {
   path: '/',
-  redirect: '/home'
+  redirect: '/index'
 }, {
   path: '/404',
   name: '404',

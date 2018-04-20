@@ -2,9 +2,9 @@
    <div class="f_container">
     <div class="banner">
       <mt-swipe :auto="4000">
-        <mt-swipe-item><img src="@/assets/logo.png"/></mt-swipe-item>
-        <mt-swipe-item><img src="@/assets/logo.png"/></mt-swipe-item>
-        <mt-swipe-item><img src="@/assets/logo.png"/></mt-swipe-item>
+        <mt-swipe-item><img src="@/assets/banner1.jpg"/></mt-swipe-item>
+        <mt-swipe-item><img src="@/assets/banner2.jpg"/></mt-swipe-item>
+        <mt-swipe-item><img src="@/assets/banner3.jpg"/></mt-swipe-item>
       </mt-swipe>
     </div>
     <div class="localInfo">
@@ -57,9 +57,6 @@ export default {
 }
 </script>
 <style scoped>
-.f_container{
-  /* background: blue */
-}
 .localInfo{
   display: flex;
   background: #eeeeee;
@@ -73,6 +70,10 @@ export default {
 .banner{
   width: 100%;
   height:200px;
+}
+.banner img{
+  width: 100%;
+  height: 200px;
 }
 .cells{
  display: flex;

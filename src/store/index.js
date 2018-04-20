@@ -44,9 +44,18 @@ const userModel = {
     }
   }
 }
+// 页面 左右滑动 切换方向
+const transitionNameModel = {
+  state () {
+    return {
+      transitionName: 'slide-right'
+    }
+  }
+}
 const store = new Vuex.Store({
   modules: {
-    userModel
+    userModel,
+    transitionNameModel
   }
 })
 export default store
