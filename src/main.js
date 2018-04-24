@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import VueResouce from 'vue-resource'
-import router from './router'
+import {router} from './router'
 import store from './store'
 import mintUi from 'mint-ui'
 

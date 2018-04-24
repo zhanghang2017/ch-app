@@ -5,7 +5,6 @@ Vue.use(Router)
 // 按需加载
 const routes = [{
   path: '/index',
-  name: 'index',
   component: resolve => require(['@/pages/index'], resolve),
   children: [{
     path: '/',
@@ -23,6 +22,22 @@ const routes = [{
     path: 'user',
     name: 'user',
     component: resolve => require(['@/pages/homePage'], resolve)
+  }]
+}, {
+  path: '/workOnline/:type',
+  component: resolve => require(['@/pages/workOnline/index'], resolve),
+  children: [{
+    path: '/theme',
+    name: 'theme',
+    component: resolve => require(['@/pages/workOnline/index'], resolve)
+  }, {
+    path: '/depart',
+    name: 'depart',
+    component: resolve => require(['@/pages/workOnline/index'], resolve)
+  }, {
+    path: '/street',
+    name: 'street',
+    component: resolve => require(['@/pages/workOnline/index'], resolve)
   }]
 }, {
   path: '/',
@@ -53,4 +68,7 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-export default router
+export {
+  router,
+  routes
+}
