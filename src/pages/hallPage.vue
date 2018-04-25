@@ -1,6 +1,7 @@
 <template>
    <div class="hall_container">
           {{msg}}
+         <router-link :to="{name:'theme'}">进去在线办事</router-link>
    </div>
 </template>
 <script>
@@ -16,6 +17,9 @@ export default {
   //     next()
   //   }, 1000)
   // },
+  created () {
+    console.log(this.$router)
+  },
   data () {
     return {
       msg: '我是大厅主页'

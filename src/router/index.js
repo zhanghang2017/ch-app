@@ -24,7 +24,7 @@ const routes = [{
     component: resolve => require(['@/pages/homePage'], resolve)
   }]
 }, {
-  path: '/workOnline/:type',
+  path: '/workOnline',
   component: resolve => require(['@/pages/workOnline/index'], resolve),
   children: [{
     path: '/theme',
