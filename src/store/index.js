@@ -44,18 +44,46 @@ const userModel = {
     }
   }
 }
-// 页面 左右滑动 切换方向
-const transitionNameModel = {
+// 页面路由记录 控制页面 左右滑动
+const routeHistoryModel = {
   state () {
     return {
-      transitionName: 'slide-right'
+      routeHistory: [],
+      transitionName: ''
+    }
+  },
+  getters: {
+    getTransitionName (state) {
+      return state.transitionName
+    },
+    getRouteHistory (state) {
+      return state.routeHistory
+    }
+  },
+  mutations: {
+    setTransitionName (state, {toName, fromName}) {
+      if (state.routeHistory.indexOf(toName) < 0) {
+        state.routeHistory.push(toName)
+        state.transitionName = 'slide-right'
+      } else if (state.routeHistory.indexOf(toName) > -1) {
+        if (state.routeHistory.indexOf(toName) > state.routeHistory.indexOf(fromName)) {
+          state.transitionName = 'slide-right'
+        } else {
+          state.transitionName = 'slide-left'
+        }
+      }
+      if (!fromName) {
+        state.transitionName = ''
+      }
+      return state.transitionName
     }
   }
 }
+
 const store = new Vuex.Store({
   modules: {
     userModel,
-    transitionNameModel
+    routeHistoryModel
   }
 })
 export default store

@@ -18,7 +18,7 @@ export default {
   //   }, 1000)
   // },
   created () {
-    console.log(this.$router)
+    // console.log(this.$router)
   },
   data () {
     return {
