@@ -1,7 +1,9 @@
 <template>
    <div class="hall_container">
           {{msg}}
-         <router-link :to="{name:'theme'}">进去在线办事</router-link>
+         <router-link tag="button" :to="{name:'theme'}">按主题</router-link>
+         <router-link tag="button" :to="{name:'depart'}">按部门</router-link>
+        <router-link  tag="button" :to="{name:'street'}">按街道</router-link>
    </div>
 </template>
 <script>

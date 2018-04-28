@@ -58,25 +58,29 @@ export default {
 </script>
 <style scoped>
 *{
-    padding: 0;
-    margin: 0
+  padding: 0;
+  margin: 0
 }
 .container{
-    display: flex;
-    width:100%;
-    height:100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    flex-direction:column
+  display: flex;
+  width:100%;
+  height:100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  flex-direction:column
 }
 .foot{
   flex: 0 0 55px;
 }
 .center{
     width:100%;
+    height: 100%;
     flex:1;
-    overflow: auto
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto
 }
 .mint-tab-item {
     padding:7px 0;

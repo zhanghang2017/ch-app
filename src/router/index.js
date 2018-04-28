@@ -27,17 +27,17 @@ const routes = [{
   path: '/workOnline',
   component: resolve => require(['@/pages/workOnline/index'], resolve),
   children: [{
-    path: '/theme',
+    path: 'theme',
     name: 'theme',
-    component: resolve => require(['@/pages/workOnline/index'], resolve)
+    component: resolve => require(['@/pages/workOnline/theme'], resolve)
   }, {
-    path: '/depart',
+    path: 'depart',
     name: 'depart',
-    component: resolve => require(['@/pages/workOnline/index'], resolve)
+    component: resolve => require(['@/pages/minePage'], resolve)
   }, {
-    path: '/street',
+    path: 'street',
     name: 'street',
-    component: resolve => require(['@/pages/workOnline/index'], resolve)
+    component: resolve => require(['@/pages/minePage'], resolve)
   }]
 }, {
   path: '/',

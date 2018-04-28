@@ -1,5 +1,10 @@
 <template>
    <div class="f_container">
+      <div class="header">
+        <div class="user"><img src="@/assets/icons/user_icon.png"/></div>
+        <div class="search">服务搜索</div>
+        <div class="scan_code"><img src="@/assets/icons/scan_icon.png"/></div>
+      </div>
     <div class="banner">
       <mt-swipe :auto="4000">
         <mt-swipe-item><img src="@/assets/banner1.jpg"/></mt-swipe-item>
@@ -13,6 +18,24 @@
         <div class="today">今日</div>
     </div>
     <div class="cells">
+        <div class="cell-item" v-for=" (item,index) in navArr " :key="index">
+            <img src="@/assets/logo.png"/>
+           <div> {{item.name}}</div>
+        </div>
+    </div>
+     <div class="cells">
+        <div class="cell-item" v-for=" (item,index) in navArr " :key="index">
+            <img src="@/assets/logo.png"/>
+           <div> {{item.name}}</div>
+        </div>
+    </div>
+     <div class="cells">
+        <div class="cell-item" v-for=" (item,index) in navArr " :key="index">
+            <img src="@/assets/logo.png"/>
+           <div> {{item.name}}</div>
+        </div>
+    </div>
+     <div class="cells">
         <div class="cell-item" v-for=" (item,index) in navArr " :key="index">
             <img src="@/assets/logo.png"/>
            <div> {{item.name}}</div>
@@ -57,6 +80,32 @@ export default {
 }
 </script>
 <style scoped>
+.f_container{
+  width: 100%;
+  height: 100%;
+}
+.header{
+   display: flex;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 55px;
+   z-index: 100;
+   align-items: center;
+   color: #FFF;
+    text-align: center;
+   background: rgba(0,0,0,0.2)
+}
+.header .user{
+  flex: 1 0 10%;
+}
+.header .search{
+  flex: 0 0 70%;
+}
+.header .scan_code{
+  flex: 1 0 10%;
+}
 .localInfo{
   display: flex;
   background: #eeeeee;
