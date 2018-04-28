@@ -12,17 +12,12 @@
         </div>
         <div class="deal_info_item">
              <div class="deal_info_item_icon"><img src="@/assets/icons/mine_yy.png"/></div>
-             <div class="deal_info_item_con">我的预约排号</div>
+             <div class="deal_info_item_con">我的邮件寄取</div>
              <div class="deal_info_item_link"><img src="@/assets/icons/right_arrow.png"/></div>
         </div>
         <div class="deal_info_item">
              <div class="deal_info_item_icon"><img src="@/assets/icons/mine_yy.png"/></div>
-             <div class="deal_info_item_con">我的预约排号</div>
-             <div class="deal_info_item_link"><img src="@/assets/icons/right_arrow.png"/></div>
-        </div>
-        <div class="deal_info_item">
-             <div class="deal_info_item_icon"><img src="@/assets/icons/mine_yy.png"/></div>
-             <div class="deal_info_item_con">我的预约排号</div>
+             <div class="deal_info_item_con">我的证照代办号</div>
              <div class="deal_info_item_link"><img src="@/assets/icons/right_arrow.png"/></div>
         </div>
     </div>
