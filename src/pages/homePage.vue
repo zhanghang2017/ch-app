@@ -46,18 +46,18 @@
    </div>
 </template>
 <script>
-// import {Indicator} from 'mint-ui'
+import {Indicator} from 'mint-ui'
 export default {
-  // beforeRouteEnter (to, from, next) {
-  //   Indicator.open({
-  //     text: 'Loading...',
-  //     spinnerType: 'fading-circle'
-  //   })
-  //   setTimeout(() => {
-  //     Indicator.close()
-  //     next()
-  //   }, 1000)
-  // },
+  beforeRouteEnter (to, from, next) {
+    Indicator.open({
+      text: 'Loading...',
+      spinnerType: 'fading-circle'
+    })
+    setTimeout(() => {
+      Indicator.close()
+      next()
+    }, 1000)
+  },
   data () {
     return {
       scrollMode: 'touch', // 移动端弹性滚动效果，touch为弹性滚动，auto是非弹性滚动

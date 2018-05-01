@@ -56,10 +56,7 @@ const router = new Router({
   routes
 })
 router.beforeEach((to, from, next) => {
-  // Indicator.open({
-  //   text: 'Loading...',
-  //   spinnerType: 'fading-circle'
-  // })
+  // 统一拦截 更新用户状态
   if (to.matched.length === 0) { // 如果未匹配到路由
     next({
       name: '404'

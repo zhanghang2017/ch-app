@@ -66,7 +66,7 @@ export default {
       this.transitionName = this.$store.getters.getTransitionName
     },
     selected (val) {
-      console.log(this.$store.getters.getUser)
+      // console.log(this.$store.getters.getUser)
       if (val === 'mine' && !this.$store.getters.getUser.loginStatus) {
         this.$router.push({name: 'login'})
       } else {
