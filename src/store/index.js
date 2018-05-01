@@ -1,12 +1,14 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+import API from '@/api/index'
+import { Indicator } from 'mint-ui'
 Vue.use(Vuex)
 // 用户状态管理
 const userModel = {
   state () {
     return {
       userData: {
-        loginStatus: '', // 用户登录状态
+        loginStatus: false, // 用户登录状态
         userName: '', // 用户名
         userType: '', // 用户类型，自然人、法人
         token: ''// 服务器返回凭据--seesionid
@@ -15,16 +17,21 @@ const userModel = {
   },
   getters: {
     getUser (state) {
-      return state.userData
+      let user = state.userData
+      if (!state.userData.loginStatus && state.userData.userName === '') {
+        user = JSON.parse(localStorage.getItem('user') || '{}')
+      }
+      return user
     }
   },
   mutations: {
-    login (state) {
-      let user = JSON.parse(localStorage.getItem('user'))
-      state.userData.loginStatus = true
-      state.userData.userName = user.userName
-      state.userData.userType = user.userType
-      state.userData.token = user.token
+    login (state, user) {
+      if (!state.userData.loginStatus) {
+        state.userData.loginStatus = true
+        state.userData.userName = user.userName
+        state.userData.userType = user.userType
+        state.userData.token = user.token
+      }
     },
     logout (state) {
       localStorage.setItem('user', '')
@@ -35,9 +42,31 @@ const userModel = {
     }
   },
   actions: {
-    login (context, user) {
-      localStorage.setItem('user', JSON.stringify(user))
-      context.commit('login')
+    login (context, vm) {
+      let {userName, password} = vm
+      Indicator.open({
+        text: '登录中...',
+        spinnerType: 'fading-circle'
+      })
+      API.LOGIN(vm, {userName, password}).then((rep) => {
+        console.log(rep)
+        Indicator.close()
+        if (rep.body.success) {
+          let user = {
+            loginStatus: true,
+            userName: rep.body.result.userName,
+            userType: '',
+            token: ''
+
+          }
+          localStorage.setItem('user', JSON.stringify(user))
+          context.commit('login', user)
+          vm.$router.push({name: 'home'})
+        }
+      }, (rep) => {
+        Indicator.close()
+        console.log(rep)
+      })
     },
     logout (context) {
       context.commit('logout')

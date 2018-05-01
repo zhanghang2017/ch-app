@@ -1,10 +1,11 @@
 <template>
-   <div class="f_container">
+   <div class="f_container" :style="{'-webkit-overflow-scrolling': scrollMode}">
       <div class="header">
         <div class="user"><img src="@/assets/icons/user_icon.png"/></div>
         <div class="search">服务搜索</div>
         <div class="scan_code"><img src="@/assets/icons/scan_icon.png"/></div>
       </div>
+   <!-- <mt-loadmore :top-method="load_top" :bottom-method="load_bottom" :bottom-all-loaded="allLoaded" ref="loadmore"> -->
     <div class="banner">
       <mt-swipe :auto="4000">
         <mt-swipe-item><img src="@/assets/banner1.jpg"/></mt-swipe-item>
@@ -41,6 +42,7 @@
            <div> {{item.name}}</div>
         </div>
     </div>
+     <!-- </mt-loadmore> -->
    </div>
 </template>
 <script>
@@ -58,6 +60,7 @@ export default {
   // },
   data () {
     return {
+      scrollMode: 'touch', // 移动端弹性滚动效果，touch为弹性滚动，auto是非弹性滚动
       navArr: [{
         name: '进度查询'
       }, {
@@ -76,6 +79,19 @@ export default {
         name: '全部'
       }]
     }
+  },
+  methods: {
+    load_top () {
+      // 下拉加载
+      // this.loadPageList()
+      this.$refs.loadmore.onTopLoaded()// 固定方法，查询完要调用一次，用于重新定位
+    },
+    load_bottom () {
+      // 上拉加载
+      // this.more()// 上拉触发的分页查询
+      this.allLoaded = true// 若数据已全部获取完毕
+      this.$refs.loadmore.onBottomLoaded()// 固定方法，查询完要调用一次，用于重新定位
+    }
   }
 }
 </script>
@@ -83,6 +99,8 @@ export default {
 .f_container{
   width: 100%;
   height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch
 }
 .header{
    display: flex;

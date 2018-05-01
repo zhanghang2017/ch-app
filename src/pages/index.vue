@@ -1,9 +1,9 @@
 <template>
    <div class="container">
-            <div class="center">
-                <transition :name="transitionName" >
+            <div class="center" >
+                  <transition :name="transitionName" >
                      <router-view  class="child-view"></router-view>
-                </transition>
+                  </transition>
             </div>
             <div  class="foot">
                 <mt-tabbar :fixed="fixed" v-model="selected">
@@ -20,6 +20,8 @@
 export default {
   data () {
     return {
+      scrollMode: 'auto', // 移动端弹性滚动效果，touch为弹性滚动，auto是非弹性滚动
+      allLoaded: true,
       transitionName: '',
       fixed: true,
       tabItemArr: [{
@@ -42,6 +44,19 @@ export default {
       selected: ''
     }
   },
+  methods: {
+    load_top () {
+      // 下拉加载
+      // this.loadPageList()
+      this.$refs.loadmore.onTopLoaded()// 固定方法，查询完要调用一次，用于重新定位
+    },
+    load_bottom () {
+      // 上拉加载
+      // this.more()// 上拉触发的分页查询
+      this.allLoaded = true// 若数据已全部获取完毕
+      this.$refs.loadmore.onBottomLoaded()// 固定方法，查询完要调用一次，用于重新定位
+    }
+  },
   created () {
     this.selected = this.$route.name
   },
@@ -51,7 +66,12 @@ export default {
       this.transitionName = this.$store.getters.getTransitionName
     },
     selected (val) {
-      this.$router.push({name: val})
+      console.log(this.$store.getters.getUser)
+      if (val === 'mine' && !this.$store.getters.getUser.loginStatus) {
+        this.$router.push({name: 'login'})
+      } else {
+        this.$router.push({name: val})
+      }
     }
   }
 }
@@ -80,7 +100,8 @@ export default {
     flex:1;
     position: relative;
     overflow-x: hidden;
-    overflow-y: auto
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch
 }
 .mint-tab-item {
     padding:7px 0;

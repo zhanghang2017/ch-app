@@ -40,6 +40,10 @@ const routes = [{
     component: resolve => require(['@/pages/minePage'], resolve)
   }]
 }, {
+  path: '/login',
+  name: 'login',
+  component: resolve => require(['@/pages/logReg/login'], resolve)
+}, {
   path: '/',
   redirect: '/index'
 }, {

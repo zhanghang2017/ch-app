@@ -20,6 +20,7 @@
              <div class="deal_info_item_con">我的证照代办号</div>
              <div class="deal_info_item_link"><img src="@/assets/icons/right_arrow.png"/></div>
         </div>
+        <mt-button type="primary" @click="loginout">退出登录</mt-button>
     </div>
    </div>
 </template>
@@ -27,6 +28,11 @@
 export default {
   data () {
     return {}
+  },
+  methods: {
+    loginout () {
+      this.$store.dispatch('logout')
+    }
   }
 }
 </script>

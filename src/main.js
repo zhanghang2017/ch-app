@@ -12,6 +12,8 @@ Vue.use(VueResouce)
 Vue.config.productionTip = false
 
 Vue.http.interceptors.push((request, next) => {
+  request.credentials = true
+  request.emulateJSON = true
   next((response) => {
     if (response.body.code != null && response.body.code === '401') { // 判断session过期
       // 过期则清空用户信息 调用用户状态管理 退出登录操作 提示 你没登录 router---主页
