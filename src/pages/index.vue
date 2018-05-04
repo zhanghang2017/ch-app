@@ -45,17 +45,7 @@ export default {
     }
   },
   methods: {
-    load_top () {
-      // 下拉加载
-      // this.loadPageList()
-      this.$refs.loadmore.onTopLoaded()// 固定方法，查询完要调用一次，用于重新定位
-    },
-    load_bottom () {
-      // 上拉加载
-      // this.more()// 上拉触发的分页查询
-      this.allLoaded = true// 若数据已全部获取完毕
-      this.$refs.loadmore.onBottomLoaded()// 固定方法，查询完要调用一次，用于重新定位
-    }
+
   },
   created () {
     this.selected = this.$route.name
@@ -66,7 +56,6 @@ export default {
       this.transitionName = this.$store.getters.getTransitionName
     },
     selected (val) {
-      // console.log(this.$store.getters.getUser)
       if (val === 'mine' && !this.$store.getters.getUser.loginStatus) {
         this.$router.push({name: 'login'})
       } else {
@@ -81,6 +70,7 @@ export default {
   padding: 0;
   margin: 0
 }
+
 .container{
   display: flex;
   width:100%;
@@ -99,8 +89,7 @@ export default {
     height: 100%;
     flex:1;
     position: relative;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
     -webkit-overflow-scrolling: touch
 }
 .mint-tab-item {

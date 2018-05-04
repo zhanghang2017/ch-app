@@ -8,17 +8,16 @@ const userModel = {
   state () {
     return {
       userData: {
-        loginStatus: false, // 用户登录状态
         userName: '', // 用户名
         userType: '', // 用户类型，自然人、法人
-        token: ''// 服务器返回凭据--seesionid
+        token: ''// 服务器返回凭据 判断用户的登录状态 和服务器约定超时时间
       }
     }
   },
   getters: {
     getUser (state) {
       let user = state.userData
-      if (!state.userData.loginStatus && state.userData.userName === '') {
+      if (!state.userData.token) {
         user = JSON.parse(localStorage.getItem('user') || '{}')
       }
       return user
@@ -26,16 +25,12 @@ const userModel = {
   },
   mutations: {
     login (state, user) {
-      if (!state.userData.loginStatus) {
-        state.userData.loginStatus = true
-        state.userData.userName = user.userName
-        state.userData.userType = user.userType
-        state.userData.token = user.token
-      }
+      state.userData.userName = user.userName
+      state.userData.userType = user.userType
+      state.userData.token = user.token
     },
     logout (state) {
       localStorage.setItem('user', '')
-      state.userData.loginStatus = false
       state.userData.userName = ''
       state.userData.userType = ''
       state.userData.token = ''
@@ -49,15 +44,12 @@ const userModel = {
         spinnerType: 'fading-circle'
       })
       API.LOGIN(vm, {userName, password}).then((rep) => {
-        console.log(rep)
         Indicator.close()
         if (rep.body.success) {
           let user = {
-            loginStatus: true,
             userName: rep.body.result.userName,
             userType: '',
             token: ''
-
           }
           localStorage.setItem('user', JSON.stringify(user))
           context.commit('login', user)

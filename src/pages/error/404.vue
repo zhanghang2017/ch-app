@@ -1,18 +1,27 @@
 <template>
    <div class="error_404">
      <div class="header">
-        <mt-header title="访问不存在">
+        <mt-header :title="errorCode">
             <mt-button icon="back" @click="back" slot="left">返回</mt-button>
         </mt-header>
      </div>
      <div class="error_content">
-         <h2>404</h2>
-         <h3>您访问的页面迷路了</h3>
+         <h2 v-text="errorText"></h2>
      </div>
    </div>
 </template>
 <script>
 export default {
+  created () {
+    this.errorCode = this.$route.params.status + ''
+    this.errorText = this.$route.params.statusText
+  },
+  data () {
+    return {
+      errorCode: '',
+      errorText: ''
+    }
+  },
   methods: {
     back () {
       this.$router.go(-1)

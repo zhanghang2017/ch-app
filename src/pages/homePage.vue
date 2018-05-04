@@ -1,11 +1,12 @@
 <template>
    <div class="f_container" :style="{'-webkit-overflow-scrolling': scrollMode}">
       <div class="header">
-        <div class="user"><img src="@/assets/icons/user_icon.png"/></div>
+        <div class="user" @click="handleClick"><img src="@/assets/icons/user_icon.png"/></div>
         <div class="search">服务搜索</div>
         <div class="scan_code"><img src="@/assets/icons/scan_icon.png"/></div>
       </div>
-   <!-- <mt-loadmore :top-method="load_top" :bottom-method="load_bottom" :bottom-all-loaded="allLoaded" ref="loadmore"> -->
+    <div class="f_center">
+
     <div class="banner">
       <mt-swipe :auto="4000">
         <mt-swipe-item><img src="@/assets/banner1.jpg"/></mt-swipe-item>
@@ -42,7 +43,10 @@
            <div> {{item.name}}</div>
         </div>
     </div>
-     <!-- </mt-loadmore> -->
+    </div>
+    <mt-popup class="popup_win"  v-model="popupVisible" popup-transition="popup-fade" >
+
+    </mt-popup>
    </div>
 </template>
 <script>
@@ -58,8 +62,12 @@ export default {
       next()
     }, 1000)
   },
+  mounted () {
+
+  },
   data () {
     return {
+      popupVisible: false,
       scrollMode: 'touch', // 移动端弹性滚动效果，touch为弹性滚动，auto是非弹性滚动
       navArr: [{
         name: '进度查询'
@@ -81,25 +89,18 @@ export default {
     }
   },
   methods: {
-    load_top () {
-      // 下拉加载
-      // this.loadPageList()
-      this.$refs.loadmore.onTopLoaded()// 固定方法，查询完要调用一次，用于重新定位
-    },
-    load_bottom () {
-      // 上拉加载
-      // this.more()// 上拉触发的分页查询
-      this.allLoaded = true// 若数据已全部获取完毕
-      this.$refs.loadmore.onBottomLoaded()// 固定方法，查询完要调用一次，用于重新定位
+    handleClick: function () {
+      this.popupVisible = true
     }
   }
 }
 </script>
 <style scoped>
+
 .f_container{
   width: 100%;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
   -webkit-overflow-scrolling: touch
 }
 .header{
@@ -112,7 +113,8 @@ export default {
    z-index: 100;
    align-items: center;
    color: #FFF;
-    text-align: center;
+   text-align: center;
+
    background: rgba(0,0,0,0.2)
 }
 .header .user{
@@ -124,6 +126,16 @@ export default {
 .header .scan_code{
   flex: 1 0 10%;
 }
+.f_center{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling:touch;
+}
+
 .localInfo{
   display: flex;
   background: #eeeeee;
@@ -137,10 +149,14 @@ export default {
 .banner{
   width: 100%;
   height:200px;
+  position: relative
 }
 .banner img{
   width: 100%;
-  height: 200px;
+  position: absolute;
+  left: 0;
+  left: 0;
+  height: 100%;
 }
 .cells{
  display: flex;
@@ -158,5 +174,10 @@ export default {
 .cell-item img{
  width: 32px;
  height: 32px
+}
+.popup_win{
+   width: 60%;
+   left: 30%;
+   height: 100%;
 }
 </style>
