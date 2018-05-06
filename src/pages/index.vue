@@ -8,7 +8,6 @@
             <div  class="foot">
                 <mt-tabbar :fixed="fixed" v-model="selected">
                     <mt-tab-item  v-for="(item,index) in  tabItemArr " :key="index" :id="item.id" >
-                        <mt-badge type="error" v-if="item.infoNum!==0" v-text="item.infoNum"></mt-badge>
                         <img slot="icon" src="../assets/logo.png">
                         {{item.name}}
                     </mt-tab-item>
@@ -82,7 +81,7 @@ export default {
   flex-direction:column
 }
 .foot{
-  flex: 0 0 55px;
+  flex: 0 0 49px;
 }
 .center{
     width:100%;
@@ -95,11 +94,6 @@ export default {
 .mint-tab-item {
     padding:7px 0;
     position: relative;
-}
-.mint-badge{
-    position:absolute;
-    right:0;
-    top: -10px
 }
 .child-view {
   position: absolute;

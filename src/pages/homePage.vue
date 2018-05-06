@@ -8,65 +8,56 @@
     <div class="f_center">
 
     <div class="banner">
-      <mt-swipe :auto="4000">
-        <mt-swipe-item><img src="@/assets/banner1.jpg"/></mt-swipe-item>
-        <mt-swipe-item><img src="@/assets/banner2.jpg"/></mt-swipe-item>
-        <mt-swipe-item><img src="@/assets/banner3.jpg"/></mt-swipe-item>
-      </mt-swipe>
+      <swiper height="210px" :loop="loop" :auto="auto">
+        <swiper-item class="swiper-demo-img" ><img src="@/assets/banner1.jpg"></swiper-item>
+        <swiper-item class="swiper-demo-img" ><img src="@/assets/banner1.jpg"></swiper-item>
+        <swiper-item class="swiper-demo-img" ><img src="@/assets/banner1.jpg"></swiper-item>
+      </swiper>
     </div>
     <div class="localInfo">
         <div class="local">成华</div>
         <div class="weather">天气</div>
-        <div class="today">今日</div>
+        <div class="today">今日限行</div>
     </div>
     <div class="cells">
         <div class="cell-item" v-for=" (item,index) in navArr " :key="index">
             <img src="@/assets/logo.png"/>
-           <div> {{item.name}}</div>
+           <div is-link> {{item.name}}</div>
         </div>
     </div>
-     <div class="cells">
-        <div class="cell-item" v-for=" (item,index) in navArr " :key="index">
-            <img src="@/assets/logo.png"/>
-           <div> {{item.name}}</div>
+    <div class="information">
+      <p class="information_title"><span>精选消息</span><span>换一换</span></p>
+    </div>
+    <div class="img_info">
+       <div class="img_info_item">
+         <img src="@/assets/banner1.jpg">
+         <div>省公安厅指挥中心（办公室）副主任张伟一莅临视察工作…</div>
+       </div>
+    </div>
+    </div>
+     <popup v-model="popupVisible" width="70%" position="left" >
+        <div>
+         nihao
         </div>
-    </div>
-     <div class="cells">
-        <div class="cell-item" v-for=" (item,index) in navArr " :key="index">
-            <img src="@/assets/logo.png"/>
-           <div> {{item.name}}</div>
-        </div>
-    </div>
-     <div class="cells">
-        <div class="cell-item" v-for=" (item,index) in navArr " :key="index">
-            <img src="@/assets/logo.png"/>
-           <div> {{item.name}}</div>
-        </div>
-    </div>
-    </div>
-    <mt-popup class="popup_win"  v-model="popupVisible" popup-transition="popup-fade" >
-
-    </mt-popup>
+      </popup>
    </div>
 </template>
 <script>
-import {Indicator} from 'mint-ui'
+
+import { Swiper, SwiperItem, Popup } from 'vux'
+
 export default {
+  components: {Swiper, SwiperItem, Popup},
   beforeRouteEnter (to, from, next) {
-    Indicator.open({
-      text: 'Loading...',
-      spinnerType: 'fading-circle'
-    })
-    setTimeout(() => {
-      Indicator.close()
-      next()
-    }, 1000)
+    next()
   },
   mounted () {
 
   },
   data () {
     return {
+      loop: true,
+      auto: true,
       popupVisible: false,
       scrollMode: 'touch', // 移动端弹性滚动效果，touch为弹性滚动，auto是非弹性滚动
       navArr: [{
@@ -96,7 +87,6 @@ export default {
 }
 </script>
 <style scoped>
-
 .f_container{
   width: 100%;
   height: 100%;
@@ -114,7 +104,6 @@ export default {
    align-items: center;
    color: #FFF;
    text-align: center;
-
    background: rgba(0,0,0,0.2)
 }
 .header .user{
@@ -138,17 +127,23 @@ export default {
 
 .localInfo{
   display: flex;
-  background: #eeeeee;
-  flex-direction:row
+  height: 52px;
+  box-sizing: border-box;
+  flex-direction:row;
+   align-items: center;
 }
 .weather,.local,.today{
   flex: 1;
-  padding: 10px 0;
-  text-align: center
+  text-align: left;
+  font-size: 15px;
+  padding: 0 18px
+}
+.today{
+  color: #999999;
 }
 .banner{
   width: 100%;
-  height:200px;
+  height:210px;
   position: relative
 }
 .banner img{
@@ -162,19 +157,50 @@ export default {
  display: flex;
  flex-direction:row;
  flex-wrap: wrap ;
-  /* align-items:  center ; */
+ align-items:  center ;
 }
 .cell-item{
  flex: 0 0 25%;
- padding:10px;
+ padding:18px 0;
  box-sizing: border-box;
  text-align:center;
- font-size: 13px;
+ font-size: 14px;
 }
 .cell-item img{
  width: 32px;
  height: 32px
 }
+.information_title{
+  display: flex;
+  margin-top: 30px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.information_title span{
+  font-size: 15px;
+  padding: 0 10px;
+}
+.information_title span:first-of-type{
+  color: #999999
+}
+.information_title span:last-of-type{
+  color:#0088EB
+}
+.img_info{
+  padding: 0 10px;
+  font-size: 18px;
+  font-family: PingFangSC-Regular;
+  font-size: 18px;
+  color: #222222;
+  letter-spacing: 0.22px;
+  text-align: justify;
+  margin-bottom: 20px
+}
+.img_info_item img{
+  width: 100%;
+  height: 158px;
+}
+
 .popup_win{
    width: 60%;
    left: 30%;
