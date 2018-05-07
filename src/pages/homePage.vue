@@ -1,8 +1,7 @@
 <template>
    <div class="f_container" :style="{'-webkit-overflow-scrolling': scrollMode}">
       <div class="header">
-        <div class="user" @click="handleClick"><img src="@/assets/icons/user_icon.png"/></div>
-        <div class="search">服务搜索</div>
+        <div class="search"  @click="popupVisible=true">服务搜索</div>
         <div class="scan_code"><img src="@/assets/icons/scan_icon.png"/></div>
       </div>
     <div class="f_center">
@@ -16,8 +15,8 @@
     </div>
     <div class="localInfo">
         <div class="local">成华</div>
-        <div class="weather">天气</div>
-        <div class="today">今日限行</div>
+        <div class="weather"><img src="@/assets/logo.png"/> 17℃~20℃</div>
+        <div class="today">今日限行：2 7</div>
     </div>
     <div class="cells">
         <div class="cell-item" v-for=" (item,index) in navArr " :key="index">
@@ -26,7 +25,7 @@
         </div>
     </div>
     <div class="information">
-      <p class="information_title"><span>精选消息</span><span>换一换</span></p>
+      <div class="information_title"><span>精选消息</span><span><img src="@/assets/logo.png"/>换一换</span></div>
     </div>
     <div class="img_info">
        <div class="img_info_item">
@@ -35,9 +34,9 @@
        </div>
     </div>
     </div>
-     <popup v-model="popupVisible" width="70%" position="left" >
+     <popup v-model="popupVisible" width="100%" height="100%" position="bottom" >
         <div>
-         nihao
+          <button  @click="popupVisible=false">取消</button>
         </div>
       </popup>
    </div>
@@ -80,9 +79,7 @@ export default {
     }
   },
   methods: {
-    handleClick: function () {
-      this.popupVisible = true
-    }
+
   }
 }
 </script>
@@ -99,21 +96,22 @@ export default {
    top: 0;
    left: 0;
    width: 100%;
-   height: 55px;
+   height: 44px;
    z-index: 100;
    align-items: center;
    color: #FFF;
    text-align: center;
    background: rgba(0,0,0,0.2)
 }
-.header .user{
-  flex: 1 0 10%;
-}
 .header .search{
-  flex: 0 0 70%;
+  flex: 0 0 80%;
 }
 .header .scan_code{
   flex: 1 0 10%;
+}
+.header .scan_code img{
+  width: 24px;
+  height: 24px;
 }
 .f_center{
   position: absolute;
@@ -132,14 +130,34 @@ export default {
   flex-direction:row;
    align-items: center;
 }
-.weather,.local,.today{
+.local{
   flex: 1;
   text-align: left;
   font-size: 15px;
-  padding: 0 18px
+  padding-left: 4.8%;
+
+}
+
+.weather{
+  flex: 0 0 42%;
+  text-align: left;
+  font-size: 15px;
+  color: #999999;
+  text-align: center
+}
+.weather img{
+  width: 22.6px;
+  height: 18.6px;
+  vertical-align: middle;
 }
 .today{
+  text-align: center;
+  flex: 0 0 32%;
+  text-align: left;
+  font-size: 15px;
   color: #999999;
+  padding-right:4.8%;
+  text-align: center
 }
 .banner{
   width: 100%;
@@ -157,7 +175,6 @@ export default {
  display: flex;
  flex-direction:row;
  flex-wrap: wrap ;
- align-items:  center ;
 }
 .cell-item{
  flex: 0 0 25%;
@@ -172,7 +189,8 @@ export default {
 }
 .information_title{
   display: flex;
-  margin-top: 30px;
+  margin-top: 27px;
+  margin-bottom: 9px;
   flex-direction: row;
   justify-content: space-between;
 }
@@ -185,6 +203,12 @@ export default {
 }
 .information_title span:last-of-type{
   color:#0088EB
+}
+.information_title span:last-of-type img{
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
+  margin-right: 4.1px
 }
 .img_info{
   padding: 0 10px;

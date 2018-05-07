@@ -8,7 +8,8 @@
             <div  class="foot">
                 <mt-tabbar :fixed="fixed" v-model="selected">
                     <mt-tab-item  v-for="(item,index) in  tabItemArr " :key="index" :id="item.id" >
-                        <img slot="icon" src="../assets/logo.png">
+                        <!-- <img slot="icon" src="../assets/logo.png"> -->
+                        <div slot="icon" class="icon_div"></div>
                         {{item.name}}
                     </mt-tab-item>
                 </mt-tabbar>
@@ -25,20 +26,16 @@ export default {
       fixed: true,
       tabItemArr: [{
         id: 'home',
-        name: '首页',
-        infoNum: 1
+        name: '首页'
       }, {
         id: 'hall',
-        name: '大厅',
-        infoNum: 10
+        name: '大厅'
       }, {
         id: 'server',
-        name: '服务',
-        infoNum: 8
+        name: '服务'
       }, {
         id: 'mine',
-        name: '我的',
-        infoNum: 0
+        name: '我的'
       }],
       selected: ''
     }
@@ -55,7 +52,7 @@ export default {
       this.transitionName = this.$store.getters.getTransitionName
     },
     selected (val) {
-      if (val === 'mine' && !this.$store.getters.getUser.loginStatus) {
+      if (val === 'mine' && !this.$store.getters.getUser.token) {
         this.$router.push({name: 'login'})
       } else {
         this.$router.push({name: val})
@@ -82,6 +79,12 @@ export default {
 }
 .foot{
   flex: 0 0 49px;
+}
+.icon_div{
+  width:24px;
+  height: 24px;
+  background:url('../assets/logo.png') no-repeat;
+  background-size: 24px 24px;
 }
 .center{
     width:100%;
