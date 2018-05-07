@@ -11,7 +11,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/':'http://192.168.0.104:8080/ssm2/'
+      // '/':'http://192.168.0.104:8080/ssm2/'
      },
     // Various Dev Server settings
     host: '192.168.0.104', // can be overwritten by process.env.HOST

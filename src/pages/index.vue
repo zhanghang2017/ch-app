@@ -8,8 +8,7 @@
             <div  class="foot">
                 <mt-tabbar :fixed="fixed" v-model="selected">
                     <mt-tab-item  v-for="(item,index) in  tabItemArr " :key="index" :id="item.id" >
-                        <!-- <img slot="icon" src="../assets/logo.png"> -->
-                        <div slot="icon" class="icon_div"></div>
+                        <div :id="item.icon_id" slot="icon" class="icon_div"></div>
                         {{item.name}}
                     </mt-tab-item>
                 </mt-tabbar>
@@ -26,16 +25,20 @@ export default {
       fixed: true,
       tabItemArr: [{
         id: 'home',
-        name: '首页'
+        name: '首页',
+        icon_id: 'icon-home'
       }, {
         id: 'hall',
-        name: '大厅'
+        name: '大厅',
+        icon_id: 'icon-sala'
       }, {
         id: 'server',
-        name: '服务'
+        name: '服务',
+        icon_id: 'icon-server'
       }, {
         id: 'mine',
-        name: '我的'
+        name: '我的',
+        icon_id: 'icon-account'
       }],
       selected: ''
     }
@@ -78,13 +81,44 @@ export default {
   flex-direction:column
 }
 .foot{
-  flex: 0 0 49px;
+  flex: 0 0 51px;
+  background: #FFF;
+}
+.mint-tabbar{
+ background:#eaeaea;
+  opacity: 0.95;
 }
 .icon_div{
   width:24px;
   height: 24px;
-  background:url('../assets/logo.png') no-repeat;
-  background-size: 24px 24px;
+
+}
+#icon-home{
+ background:url('../assets/homePage/icon-home@2x.png') no-repeat;
+ background-size: 100% auto;
+ background-position-y: -47px;
+}
+#icon-sala{
+ background:url('../assets/homePage/icon-sala@2x.png') no-repeat;
+ background-size: 100% auto;
+ background-position-y: -47px;
+}
+#icon-server{
+ background:url('../assets/homePage/icon-server@2x.png') no-repeat;
+ background-size: 100% auto;
+ background-position-y: -47px;
+}
+#icon-account{
+ background:url('../assets/homePage/icon-account@2x.png') no-repeat;
+ background-size: 100% auto;
+ background-position-y: -47px;
+}
+.mint-tabbar > .mint-tab-item.is-selected {
+  /* background: #FFF; */
+}
+.mint-tabbar > .mint-tab-item.is-selected .icon_div{
+   background-position-y: 0px!important;
+
 }
 .center{
     width:100%;
@@ -115,5 +149,17 @@ export default {
   opacity: 0;
   -webkit-transform: translate(100px, 0);
   transform: translate(100px, 0);
+}
+/* iphone5 */
+@media (device-height:568px) and (-webkit-min-device-pixel-ratio:2){
+
+}
+/* iphone6 */
+@media(min-device-width:375px)and(max-device-width:667px)and(-webkit-min-device-pixel-ratio:2){
+
+}
+/*iphone6plus*/
+@media(min-device-width:414px)and(max-device-width:736px)and(-webkit-min-device-pixel-ratio:3){
+
 }
 </style>

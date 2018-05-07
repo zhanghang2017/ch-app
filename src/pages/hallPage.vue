@@ -19,5 +19,14 @@ export default {
 }
 </script>
 <style scoped>
-
+*{
+  padding: 0;
+  margin: 0;
+}
+.hall_container{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch
+}
 </style>

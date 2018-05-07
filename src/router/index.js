@@ -17,7 +17,7 @@ const routes = [{
   }, {
     path: 'server',
     name: 'server',
-    component: resolve => require(['@/pages/homePage'], resolve)
+    component: resolve => require(['@/pages/minePage'], resolve)
   }, {
     path: 'mine',
     name: 'mine',
